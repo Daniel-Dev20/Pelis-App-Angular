@@ -1,1 +1,220 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+body{
+
+    font-family:'Times New Roman', Times, serif;
+    font-size: 12px;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    color: #fff;
+}
+
+ul{
+    list-style: none;
+}
+
+
+.right{
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
+
+.right{
+
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to right, #4343433a 0%, rgba(0, 0, 0, 0.829) 100%), url('./assets/img/banner.png');
+    right: 0%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    object-fit: cover;
+    image-rendering: crisp-edges;
+}
+
+.nav{
+
+    background: rgba(0, 0, 0, 0.767);
+}
+.nav ul{
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 80px;
+    padding: 0 20px;
+}
+
+.nav ul li{
+
+    display: inline-block;
+    
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 30px;
+    justify-content: center;
+}
+
+.nav a{
+
+    text-decoration: none;
+    color: red;
+    cursor: pointer;
+}
+.nav .logo{
+
+    flex: 1;
+    font-size: 18px;
+    letter-spacing: 0;
+}
+
+.nav .menu{
+
+    flex:1;
+    font-size: 18px;
+}
+
+.nav .collection{
+    flex: 1;
+}
+
+.nav .explore{
+
+    flex: 1;
+}
+
+.nav .search{
+
+    flex:1;
+}
+
+
+.name{
+    
+    text-align: center;
+    top: 100%;
+    margin-top: 120px;
+    transform: translateY(-50%);
+    font-size: 60px;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 2px red;
+    text-align: center;
+   
+
+}
+
+
+.img-wrapper .banner{
+
+    width: 1024px;
+    height: 675px;
+
+
+}
+
+.info{
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.info ul li {
+
+    display: inline-block;
+    padding: 20px 25px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 8px;
+    font-weight: 600;
+}
+
+.text{
+
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+}
+
+
+.text h1{
+
+    font-size: 70px;
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+}
+
+.text p{
+
+    font-size: 20px;
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.content1{
+
+    width: 100%;
+    height: 400px;
+    background: black;
+    color: #fff;
+    display: flex;  
+}
+
+.content2{
+
+    width: 100%;
+    height: 400px;
+    color: #fff;
+    background: black;
+  
+}
+
+.flex{
+
+  display: inline-flex;
+  width: 100%;
+  height: 500px;
+}
+.flex-text{
+
+    width: 50%;
+    height: 500px;
+   
+}
+
+.flex-text h2{
+
+    font-size: 60px;
+    margin-top: 170px;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.flex-img{
+
+    width: 60%;
+    height: 500px;
+   
+}
+
+.mac{
+    margin-left: 462px;
+}
