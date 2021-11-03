@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthRoutingModule } from './auth/auth.routing';
-import { PagesRouterModule } from './pages/pages.routes';
+import { PagesRouterModule, pagesRoutes } from './pages/pages.routes';
 
-const routes: Routes = [];
+const routes: Routes = [
+
+  
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

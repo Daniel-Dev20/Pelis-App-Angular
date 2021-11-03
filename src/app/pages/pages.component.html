@@ -11,9 +11,10 @@
         <ul>
             <li class="logo"><a href="">Inicio</a></li>
             <li class="menu"><a routerLink='/peliculas'>Peliculas</a></li>
-            <li class="collection"><a href="">Series</a></li>
-            <li class="explore"><a routerLink="/login">Iniciar Sesión</a></li>
-            <li class="search"><a routerLink="/register">Registrarse</a></li>
+            <li class="collection"><a routerLink="/series">Series</a></li>
+            <li *ngIf="!userAuth" class="explore"><a routerLink="/login">Iniciar Sesión</a></li>
+            <li *ngIf="userAuth" (click)="logout()" class="explore"><a routerLink="/login">Cerrar Sesión</a></li>
+            <li class="search"><a routerLink="/registro">Registrarse</a></li>
 
          
         </ul>
@@ -45,7 +46,9 @@
 
 <hr>
 
-<div data-aos="fade-up" data-aos-duration="1000" class="content1">
+
+<!-- INICIO HTML SECCION MAC -->
+<div data-aos="zoom-in" data-aos-duration="1000" class="content1">
 
 
     <div class="flex">
@@ -60,7 +63,11 @@
 
 
 </div>
+
+<!-- FIN HTML SECCION MAC -->
 <hr>
+
+<!-- INICIO HTML SECCION IPHONE -->
 <div data-aos="zoom-in" data-aos-duration="1000" class="content2">
 
     <div class="flex">
@@ -75,3 +82,6 @@
 
 
 </div>
+
+
+<!-- FIN HTML SECCION IPHONE -->

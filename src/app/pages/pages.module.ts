@@ -4,8 +4,9 @@ import { PagesComponent } from './pages.component';
 import { PeliculasComponent } from './peliculas/peliculas.component';
 import { SeriesComponent } from './series/series.component';
 import { SharedModule } from '../shared/shared.module';
-import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { AuthModule } from '../auth/auth.module';
+import { PagesRouterModule } from './pages.routes';
+import { AuthRoutingModule } from '../auth/auth.routing';
 
 
 
@@ -20,7 +21,8 @@ import { AuthModule } from '../auth/auth.module';
   imports: [
     CommonModule,
     SharedModule,
-    AuthModule 
+    PagesRouterModule,
+    AuthRoutingModule
   ]
 })
 export class PagesModule { }

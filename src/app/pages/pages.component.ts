@@ -7,6 +7,8 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger';
 
 import  * as AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 
 gsap.registerPlugin(ScrollTrigger)
@@ -23,7 +25,15 @@ export class PagesComponent implements OnInit {
   @ViewChild('navbar', {static:true}) navbar:ElementRef;
   @ViewChild('title', {static:true}) title:ElementRef;
 
-  constructor(@Inject(DOCUMENT) private document:Document) { }
+  userAuth = localStorage.getItem('email');
+
+  constructor(
+    
+    @Inject(DOCUMENT) private document:Document,
+    private authService:AuthService,
+    private router:Router
+  
+  ) { }
 
   ngOnInit(): void {
 
@@ -43,5 +53,15 @@ export class PagesComponent implements OnInit {
     })
 
    
+ }
+
+ logout = () => {
+
+    localStorage.removeItem('email')
+    this.authService.logout().then( () => {
+
+      this.router.navigateByUrl('/login')
+
+    })
  }
 }

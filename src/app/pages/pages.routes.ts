@@ -3,18 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { PeliculasComponent } from './peliculas/peliculas.component';
 import { SeriesComponent } from './series/series.component';
 import { PagesComponent } from './pages.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 
 
 
-const pagesRoutes:Routes = [
+export const pagesRoutes:Routes = [
 
    
-    {path: '', component:PagesComponent},
-    {path: 'home', component:PagesComponent},
-    {path: 'peliculas', component:PeliculasComponent},
+    {path: 'home', component:PagesComponent, canActivate:[AuthGuard]},
+    {path: 'peliculas', component:PeliculasComponent, canActivate:[AuthGuard]},
     {path: 'series', component:SeriesComponent},
-    {path: '**', redirectTo: 'home'}
 
 
 ]

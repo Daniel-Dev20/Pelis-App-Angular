@@ -1,1 +1,67 @@
-<p>register works!</p>
+
+
+
+<section class="formularios">
+    <div class="color"></div>
+    <div class="color"></div>
+    <div class="color"></div>
+    <div class="box">
+
+        <div class="square" style="--i:0;"></div>
+        <div class="square" style="--i:1;"></div>
+        <div class="square" style="--i:2;"></div>
+        <div class="square" style="--i:3;"></div>
+        <div class="square" style="--i:4;"></div>
+
+        <div class="container">
+            <div class="form">
+                <h2>Registro</h2>
+                <form [formGroup]="registroForm" (ngSubmit)="guardar()">
+
+                    <span class="invalid-campo" *ngIf="validarCampos('nombre')">Ingrese un nombre</span>
+
+                    <div class="inputBox">
+
+
+                        <input 
+                        type="text" 
+                        formControlName="nombre"
+                        placeholder="Nombre">
+
+                    </div>
+
+                    <div class="inputBox">
+
+                        <span class="invalid-campo" *ngIf="validarCampos('correo')">El correo no es valido</span>
+
+                        <input 
+                        type="text" 
+                        formControlName="correo"
+                        placeholder="Correo">
+
+                    </div>
+
+                    <div class="inputBox">
+
+                        <span class="invalid-campo" *ngIf="validarCampos('password')">Ingrese una Contrasena</span>
+
+                        <input 
+                        type="password" 
+                        formControlName="password"
+                        placeholder="Password">
+                    </div>
+
+                    <div class="inputBox">
+                        <button 
+                        class="btn-submit" 
+                        [disabled]="registroForm.invalid"
+                        type="submit">Registrarse</button>
+                    </div>
+
+                    <p class="forget">Ya tienes una cuenta?<a routerLink="/login"> Click aqui</a></p>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
