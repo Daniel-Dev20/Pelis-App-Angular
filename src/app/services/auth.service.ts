@@ -22,7 +22,7 @@ export class AuthService {
 
       this.auth.authState.subscribe(fuser => {
 
-        console.log(fuser);
+        console.log(fuser?.uid);
         
       })
     }
@@ -49,15 +49,14 @@ export class AuthService {
 
       const {correo, password} = usuario;
 
-     return  this.auth.signInWithEmailAndPassword(correo, password).then( () => {
-
-        localStorage.setItem('email', correo);
-     })
+      localStorage.setItem('email', correo)
+     return  this.auth.signInWithEmailAndPassword(correo, password);
 
     }
 
     logout = () => {
 
+      localStorage.removeItem('email');
 
       return this.auth.signOut();
     }

@@ -57,7 +57,6 @@ export class PagesComponent implements OnInit {
 
  logout = () => {
 
-    localStorage.removeItem('email')
     this.authService.logout().then( () => {
 
       this.router.navigateByUrl('/login')
