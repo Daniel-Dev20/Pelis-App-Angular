@@ -13,7 +13,7 @@ export const pagesRoutes:Routes = [
    
     {path: 'home', component:PagesComponent, canActivate:[AuthGuard]},
     {path: 'peliculas', component:PeliculasComponent, canActivate:[AuthGuard]},
-    {path: 'series', component:SeriesComponent},
+    {path: 'series', component:SeriesComponent, canActivate: [AuthGuard]},
 
 
 ]

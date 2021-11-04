@@ -21,12 +21,13 @@
     "@angular/router": "~12.1.0-",
     "@types/gsap": "^3.0.0",
     "aos": "^3.0.0-beta.6",
-    "gsap": "^3.8.0",
-    "rxjs": "~6.6.0",
-    "tslib": "^2.2.0",
-    "zone.js": "~0.11.4",
     "firebase": "^9.1.0",
-    "rxfire": "^6.0.0"
+    "gsap": "^3.8.0",
+    "rxfire": "^6.0.0",
+    "rxjs": "~6.6.0",
+    "sweetalert2": "^11.1.9",
+    "tslib": "^2.2.0",
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.1.3",
