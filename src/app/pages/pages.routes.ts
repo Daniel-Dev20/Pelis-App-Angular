@@ -4,6 +4,7 @@ import { PeliculasComponent } from './peliculas/peliculas.component';
 import { SeriesComponent } from './series/series.component';
 import { PagesComponent } from './pages.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { AddPeliculasComponent } from './add-peliculas/add-peliculas.component';
 
 
 
@@ -11,9 +12,10 @@ import { AuthGuard } from '../guards/auth.guard';
 export const pagesRoutes:Routes = [
 
    
-    {path: 'home', component:PagesComponent, canActivate:[AuthGuard]},
+    {path: 'home', component:PagesComponent},
     {path: 'peliculas', component:PeliculasComponent, canActivate:[AuthGuard]},
     {path: 'series', component:SeriesComponent, canActivate: [AuthGuard]},
+    {path: 'add-peliculas', component:AddPeliculasComponent}
 
 
 ]

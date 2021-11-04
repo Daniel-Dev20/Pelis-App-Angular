@@ -12,10 +12,17 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
+
 //FIRESTORE
 import { AngularFireModule } from '@angular/fire/compat';
 import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import {AngularFireAuthModule} from "@angular/fire/compat/auth"
+import { SharedModule } from './shared/shared.module';
+
+//NGRX
+import {StoreModule} from '@ngrx/store';
+import { appReducers } from './app.reducer';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools'
 
 
 
@@ -36,7 +43,15 @@ import {AngularFireAuthModule} from "@angular/fire/compat/auth"
     provideStorage(() => getStorage()),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+
+      maxAge: 25,
+      logOnly: environment.production,
+
+    }),
+    
    
   ],
   providers: [],

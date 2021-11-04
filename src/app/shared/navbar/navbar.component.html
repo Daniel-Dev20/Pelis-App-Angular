@@ -1,1 +1,19 @@
 
+<!-- HTML del MENU -->
+
+
+
+<nav class="nav" #navbar>
+    <ul>
+        <li class="logo"><a routerLink="/home">Inicio</a></li>
+        <li class="menu"><a routerLink='/peliculas'>Peliculas</a></li>
+        <li class="collection"><a routerLink="/series">Series</a></li>
+        <li *ngIf="!userAuth" class="explore"><a routerLink="/login">Iniciar Sesión</a></li>
+        <li *ngIf="userAuth" (click)="logout()" class="explore"><a >Cerrar Sesión</a></li>
+        <li  class="search"><a routerLink="/registro">Registrarse</a></li>
+        <li  class="search"><a routerLink="/add-peliculas">Agregar Pelicula</a></li>
+    </ul>
+</nav>
+   
+
+   <!-- FIN HTML del MENU -->

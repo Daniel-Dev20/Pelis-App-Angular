@@ -41,6 +41,8 @@
 
                     </div>
 
+                    
+
                     <div class="inputBox">
 
                         <span class="invalid-campo" *ngIf="validarCampos('password')">Ingrese una Contrasena</span>
@@ -55,7 +57,16 @@
                         <button 
                         class="btn-submit" 
                         [disabled]="registroForm.invalid"
-                        type="submit">Registrarse</button>
+                        *ngIf="!cargando"
+                        type="submit">
+                        Registrarse
+                        </button>
+                    </div>
+
+                    <div class="inputBox">        
+
+                        <button *ngIf="cargando" class="btn-submit" type="button"><fa-icon [icon]="faSpinner"></fa-icon>Espere...</button>
+
                     </div>
 
                     <p class="forget">Ya tienes una cuenta?<a routerLink="/login"> Click aqui</a></p>

@@ -1,5 +1,5 @@
 
-
+<app-navbar></app-navbar>
 
 <section class="formularios">
     <div class="color"></div>
@@ -16,6 +16,7 @@
         <div class="container">
             <div class="form">
 
+                
                 <h2>Login</h2>
 
                 <form [formGroup]="loginForm" (ngSubmit)="login()">
@@ -23,10 +24,12 @@
                     <span class="invalid-campo" *ngIf="validarCampos('correo')">Ingrese el Correo</span>
 
                     <div class="inputBox">
+
                         <input 
                         type="email" 
                         formControlName="correo"
                         placeholder="Correo">
+                        
                     </div>
 
                     <span class="invalid-campo" *ngIf="validarCampos('password')">Ingrese un nombre</span>
@@ -39,7 +42,13 @@
                     </div>
 
                     <div class="inputBox">
-                        <button class="btn-submit" type="submit">iniciar Sesión</button>
+                        <button  *ngIf="!cargando" class="btn-submit" type="submit">iniciar Sesión</button>
+                    </div>
+
+                    <div class="inputBox">        
+
+                        <button *ngIf="cargando" class="btn-submit" type="button"><fa-icon [icon]="faSpinner"></fa-icon>Espere...</button>
+
                     </div>
 
                     <p class="forget">No tienes una cuenta?<a routerLink="/registro"> Click aqui</a></p>

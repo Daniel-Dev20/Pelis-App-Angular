@@ -4,9 +4,9 @@ import { PagesComponent } from './pages.component';
 import { PeliculasComponent } from './peliculas/peliculas.component';
 import { SeriesComponent } from './series/series.component';
 import { SharedModule } from '../shared/shared.module';
-import { AuthModule } from '../auth/auth.module';
 import { PagesRouterModule } from './pages.routes';
 import { AuthRoutingModule } from '../auth/auth.routing';
+import { AddPeliculasComponent } from './add-peliculas/add-peliculas.component';
 
 
 
@@ -16,6 +16,7 @@ import { AuthRoutingModule } from '../auth/auth.routing';
     PagesComponent,
     PeliculasComponent,
     SeriesComponent,
+    AddPeliculasComponent,
   
   ],
   imports: [

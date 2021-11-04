@@ -5,16 +5,24 @@ import { loginForm } from '../models/loginForm';
 import { registroForm } from '../models/registro-form';
 import { Usuario } from '../models/usuario.model';
 import {map} from 'rxjs/operators'
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.reducer';
+import * as authActions from '../auth/auth.actions';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+
+  userSubscription:Subscription;
+
   constructor(
 
     private firestore:AngularFirestore,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private store:Store<AppState>
     ) { }
 
 
@@ -22,14 +30,38 @@ export class AuthService {
 
       this.auth.authState.subscribe(fuser => {
 
-        console.log(fuser?.uid);
+        console.log(fuser);
+
+        if(fuser){
+
+          //existe
+         this.userSubscription = this.firestore.doc(`usuarios/${fuser.uid}`).valueChanges()
+              .subscribe((fireuser:any) => {
+
+                console.log(fireuser);
+
+                const user =  Usuario.fromFirebase(fireuser)
+
+                this.store.dispatch(authActions.setUser({user}))
+
+                
+              })
+        }else{
+
+          //no exist
+
+          this.userSubscription.unsubscribe(); 
+          this.store.dispatch(authActions.unsetUser());
+
+        }
+
         
       })
     }
 
     crearUsuario = (usuario:registroForm) => {
 
-      const {nombre,correo, password, } = usuario;
+      const {nombre,correo, password } = usuario;
 
       console.log(nombre, correo, password);
       
@@ -38,6 +70,8 @@ export class AuthService {
 
 
         const newUser = new Usuario(user?.uid, nombre, correo);
+
+        localStorage.setItem('email', correo)
 
         return this.firestore.doc(`usuarios/${user?.uid}`).set({...newUser});
 
@@ -67,7 +101,7 @@ export class AuthService {
 
       return this.auth.authState.pipe(
 
-        map( fbuser => fbuser != null)
+        map( fbuser => fbuser != undefined)
       )
     }
 }
