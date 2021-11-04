@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -44,7 +46,15 @@ export class RegisterComponent implements OnInit {
 
       this.router.navigateByUrl('/home')
       
-    }).catch(err => console.log(err))
+    }).catch(err => {
+
+      Swal.fire({
+        icon: 'error',
+        title: err,
+        text: 'Error al iniciar Sesión',
+      
+      })
+    })
 
     
     this.registroForm.reset();

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,8 +23,8 @@ export class LoginComponent implements OnInit {
 
     this.loginForm = this.formBuilder.group({
 
-      correo: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.minLength(6)]]
+      correo: ["test1@gmail.com", [Validators.required, Validators.email]],
+      password: ["123456", [Validators.required, Validators.minLength(6)]]
     })
   }
 
@@ -41,7 +43,16 @@ export class LoginComponent implements OnInit {
 
       this.router.navigateByUrl('/home')
        
-    }).catch(err => console.log(err))
+    }).catch(err => {
+
+  
+      Swal.fire({
+        icon: 'error',
+        title: err,
+        text: 'Error al iniciar Sesión',
+      
+      })
+    })
 
     this.loginForm.reset();
     
