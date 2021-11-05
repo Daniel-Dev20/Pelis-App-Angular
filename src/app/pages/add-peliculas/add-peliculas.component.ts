@@ -5,6 +5,8 @@ import { AddPeliculasService } from 'src/app/services/add-peliculas.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage'
 
 
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-add-peliculas',
@@ -49,6 +51,13 @@ export class AddPeliculasComponent implements OnInit {
     console.log(this.peliculasForm.value);
 
     this.peliculaService.guardarPelicula(this.peliculasForm.value);
+     
+      Swal.fire({
+        icon: 'success',
+        title: 'Pelicula Guardada',
+        showConfirmButton: false,
+        timer: 2000
+      })
 
     this.peliculasForm.reset();
     
