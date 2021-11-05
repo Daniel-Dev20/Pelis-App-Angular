@@ -5,7 +5,6 @@ import { gsap } from "gsap";
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 
 
-import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 
@@ -23,13 +22,14 @@ export class PagesComponent implements OnInit {
 
   constructor(
   
-    private authService:AuthService,
     private router:Router
   
   ) { }
 
   ngOnInit(): void {
 
+  //  this.authService.initAuthListener()
+   
   }
 
 

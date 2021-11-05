@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PagesRouterModule } from './pages.routes';
 import { AuthRoutingModule } from '../auth/auth.routing';
 import { AddPeliculasComponent } from './add-peliculas/add-peliculas.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +24,8 @@ import { AddPeliculasComponent } from './add-peliculas/add-peliculas.component';
     CommonModule,
     SharedModule,
     PagesRouterModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }

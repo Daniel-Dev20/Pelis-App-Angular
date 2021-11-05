@@ -18,32 +18,53 @@ export class AuthService {
 
   userSubscription:Subscription;
 
+  public _userRole:any;
+
+  get getuserRole(){
+
+    return this._userRole
+  }
+
   constructor(
 
     private firestore:AngularFirestore,
     private auth: AngularFireAuth,
     private store:Store<AppState>
-    ) { }
+    ) {
 
+     }
+
+
+    getUser = () => {
+
+      return this.auth.currentUser;
+
+
+    }
 
     initAuthListener = () => {
 
-      this.auth.authState.subscribe(fuser => {
+       return this.auth.authState.subscribe(fuser => {
 
         console.log(fuser);
 
         if(fuser){
 
           //existe
-         this.userSubscription = this.firestore.doc(`usuarios/${fuser.uid}`).valueChanges()
+            this.userSubscription = this.firestore.doc(`usuarios/${fuser.uid}`).valueChanges()
               .subscribe((fireuser:any) => {
 
                 console.log(fireuser);
 
+                this._userRole =  fireuser;
+
+                console.log('cc', this._userRole);
+                
                 const user =  Usuario.fromFirebase(fireuser)
 
                 this.store.dispatch(authActions.setUser({user}))
 
+                return this._userRole;
                 
               })
         }else{

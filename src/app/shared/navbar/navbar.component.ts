@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -13,23 +13,38 @@ import { DOCUMENT } from '@angular/common';
   styles: [
   ]
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   @ViewChild('navbar', {static:true}) navbar:ElementRef;
 
   userAuth = localStorage.getItem('email');
+
+  role:string;
 
   constructor(
 
     @Inject(DOCUMENT) private document:Document,
     private authService:AuthService,
     private router:Router
-    ) { }
+    ) {
 
-  ngOnInit(): void {
+     
 
+     }
+
+   ngOnInit() {
+
+   
+    this.getUserRole();
+
+    
     // this.initialAnimation();
     AOS.init();
+  }
+  ngOnDestroy(){
+
+    // this.authService.initAuthListener();
+
   }
 
 //     initialAnimation = () => {
@@ -51,7 +66,19 @@ export class NavbarComponent implements OnInit {
 
       this.router.navigateByUrl('/login')
 
+
+
     })
  }
+
+ getUserRole = async () => {
+
+  this.role =  await this.authService.getuserRole;
+
+
+  console.log('vvv',this.role);
+
+
+}
 
 }

@@ -1,15 +1,18 @@
 
 <app-navbar></app-navbar>
 
-<section class="section-add-movie">
+<section data-aos="fade-right" class="section-add-movie">
     <div class="container-add-movie">
         <h2>Agregar Pelicula</h2>
-        <form>
+        <form [formGroup]="peliculasForm" (ngSubmit)="guardar()">
         <div class="row100">
             <div class="col">
                     <div class="inputBoxMovie">
 
-                        <input type="text">
+                        <input 
+                        type="text"
+                        formControlName="titulo"
+                        >
                         <span class="text">Titulo</span>
                         <span class="line"></span>
 
@@ -20,7 +23,7 @@
 
                 <div class="inputBoxMovie">
 
-                    <input type="text">
+                    <input type="text" formControlName="stock">
                     <span class="text">Stock</span>
                     <span class="line"></span>
 
@@ -30,21 +33,24 @@
         </div>
 
         <div class="row100">
+
+
+
             <div class="col">
-                    <div class="inputBoxMovie">
+                <div class="inputBoxMovie">
 
-                        <input type="text">
-                        <span class="text">Precio Alquiler</span>
-                        <span class="line"></span>
+                    <input type="text" formControlName="precioVenta">
+                    <span class="text">Precio Alquiler</span>
+                    <span class="line"></span>
 
-                    </div>
+                </div>
             </div>
 
             <div class="col">
                 <div class="inputBoxMovie">
 
-                    <input type="text">
-                    <span class="text">Precio venta</span>
+                    <input type="text" formControlName="precioVenta">
+                    <span class="text">Precio Venta</span>
                     <span class="line"></span>
 
                 </div>
@@ -55,8 +61,17 @@
         <div class="row100">
             <div class="col">
                 <div class="inputBoxMovie textarea">
-                    <textarea></textarea>
+                    <textarea formControlName="descripcion"></textarea>
                     <span class="text">Descripción</span>
+                    <span class="line"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row100">
+            <div class="col">
+                <div class=" textarea">
+                    <input (change)="uploadImg($event)" type="file" formControlName="img"/>
                     <span class="line"></span>
                 </div>
             </div>

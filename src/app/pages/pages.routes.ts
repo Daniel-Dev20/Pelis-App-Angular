@@ -15,7 +15,7 @@ export const pagesRoutes:Routes = [
     {path: 'home', component:PagesComponent},
     {path: 'peliculas', component:PeliculasComponent, canActivate:[AuthGuard]},
     {path: 'series', component:SeriesComponent, canActivate: [AuthGuard]},
-    {path: 'add-peliculas', component:AddPeliculasComponent}
+    {path: 'add-peliculas', component:AddPeliculasComponent, canActivate:[AuthGuard]}
 
 
 ]
