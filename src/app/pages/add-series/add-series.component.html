@@ -1,36 +1,35 @@
-
-
-
 <app-navbar></app-navbar>
+
+
 
 <section data-aos="fade-right" class="section-add-movie " >
     
     <div class="container-add-movie">
-        <h2>Agregar Pelicula</h2>
-        <form [formGroup]="peliculasForm" (ngSubmit)="guardar()">
+        <h2>Agregar Serie</h2>
+        <form [formGroup]="seriesForm" (ngSubmit)="guardar()" >
         <div class="row100">
             <div class="col">
-                <span class="errors" *ngIf="validarCampos('titulo')">* El titulo es obligatorio *</span>
+                <span *ngIf="validarCampos('tiulo')" class="errors" >* El titulo es obligatorio *</span>
 
                     <div class="inputBoxMovie">
 
 
-                        <input 
-                        type="text"
-                        formControlName="titulo"
-                        >
+                        <input type="text" formControlName="titulo">
                         <span class="text">Titulo</span>
                         <span class="line"></span>
 
                     </div>
+
+                
             </div>
 
+            
             <div class="col">
-                <span class="errors" *ngIf="validarCampos('stock')">* El stock es  obligatorio *</span>
+                <span *ngIf="validarCampos('stock')" class="errors">* El stock es  obligatorio *</span>
 
                 <div class="inputBoxMovie">
 
-                    <input type="number"  formControlName="stock">
+                    <input type="number" formControlName="stock">
                     <span class="text">Stock</span>
                     <span class="line"></span>
 
@@ -45,14 +44,14 @@
 
             <div class="col">
                 <div class="content-errors">
-                <span class="errors" *ngIf="validarCampos('precioAlquiler')">* El Precio Alquiler es obligatorio *</span>
+                <span *ngIf="validarCampos('temporada')" class="errors">* La temporada es obligatorio *</span>
 
                 </div>
 
                 <div class="inputBoxMovie">
 
-                    <input type="number" formControlName="precioAlquiler">
-                    <span class="text">Precio Alquiler</span>
+                    <input type="number" formControlName="temporada">
+                    <span class="text">Temporada</span>
                     <span class="line"></span>
 
                 </div>
@@ -60,7 +59,7 @@
 
             <div class="col">
                 <div class="content-errors">
-                    <span class="errors" *ngIf="validarCampos('precioVenta')">* El Precio Venta es obligatorio *</span>
+                    <span *ngIf="validarCampos('precioVenta')" class="errors">* El Precio Venta es obligatorio *</span>
     
                     </div>
                 <div class="inputBoxMovie">
@@ -72,12 +71,17 @@
                 </div>
             </div>
 
+            
+
         </div>
 
+         
+       
         <div class="row100">
             <div class="col">
+            
                 <div class="content-errors">
-                    <span class="errors" *ngIf="validarCampos('descripcion')">* La descripción es obligatoria *</span>
+                    <span *ngIf="validarCampos('descripcion')" class="errors">* La descripción es obligatoria *</span>
     
                     </div>
                 <div class="inputBoxMovie textarea">
@@ -91,7 +95,7 @@
         <div class="row100">
             <div class="col">
                 <div class=" textarea">
-                    <input (change)="uploadImg($event)" type="file" formControlName="img"/>
+                    <input type="file" />
                     
                     <span class="line"></span>
                 </div>
@@ -101,9 +105,9 @@
  
         <div class="row100">
             <div class="col">
-                <input *ngIf="!cargando"  type="submit" value="Guardar"/>
-                <fa-icon *ngIf="cargando"[icon]="faSpinner"></fa-icon>
-                <input *ngIf="cargando" type="submit" value="Guardando...">
+                <input  type="submit" value="Guardar"/>
+                <!-- <fa-icon *ngIf="cargando"[icon]="faSpinner"></fa-icon> -->
+               
             </div>
 
         </div>
@@ -114,4 +118,3 @@
 
     </div>
 </section>
-

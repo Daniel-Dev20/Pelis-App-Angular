@@ -8,7 +8,8 @@ import { PagesRouterModule } from './pages.routes';
 import { AuthRoutingModule } from '../auth/auth.routing';
 import { AddPeliculasComponent } from './add-peliculas/add-peliculas.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AddSeriesComponent } from './add-series/add-series.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PeliculasComponent,
     SeriesComponent,
     AddPeliculasComponent,
+    AddSeriesComponent,
   
   ],
   imports: [
@@ -25,7 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     PagesRouterModule,
     AuthRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ]
 })
 export class PagesModule { }

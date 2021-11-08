@@ -37,35 +37,33 @@ export class AuthService {
 
     getUser = () => {
 
-      return this.auth.currentUser;
-
-
+      return  console.log( 'mm', this.auth.currentUser);
     }
 
     initAuthListener = () => {
 
-       return this.auth.authState.subscribe(fuser => {
+       return  this.auth.authState.subscribe( fuser => {
 
         console.log(fuser);
 
         if(fuser){
 
           //existe
-            this.userSubscription = this.firestore.doc(`usuarios/${fuser.uid}`).valueChanges()
+           return  this.userSubscription =   this.firestore.doc(`usuarios/${fuser.uid}`).valueChanges()
               .subscribe((fireuser:any) => {
 
                 console.log(fireuser);
 
-                this._userRole =  fireuser;
-
-                console.log('cc', this._userRole);
-                
                 const user =  Usuario.fromFirebase(fireuser)
 
                 this.store.dispatch(authActions.setUser({user}))
 
-                return this._userRole;
-                
+                const {role} = fireuser;
+                console.log('roleee', role);
+
+                this._userRole = role;
+
+                return fireuser;
               })
         }else{
 

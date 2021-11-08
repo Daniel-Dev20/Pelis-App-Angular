@@ -15,12 +15,12 @@ export class AddPeliculasService {
 
     const {titulo, stock, precioAlquiler, precioVenta, descripcion, img} = peliculaForm;
 
-    console.log(peliculaForm);
     const id = new Date().getTime();
+    
     const newPelicula = new Peliculas( id,titulo, stock, precioAlquiler, precioVenta, descripcion, img);
 
 
-    this.firestore.doc(`peliculas/${id}`).set({...newPelicula});
+    return  this.firestore.doc(`peliculas/${id}`).set({...newPelicula});
 
   }
 

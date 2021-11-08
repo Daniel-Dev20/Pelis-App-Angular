@@ -75,7 +75,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   this.role =  await this.authService.getuserRole;
 
-
   console.log('vvv',this.role);
 
 

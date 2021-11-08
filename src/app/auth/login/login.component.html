@@ -1,6 +1,6 @@
 
 
-<section class="formularios">
+<section  class="formularios">
     <div class="color"></div>
     <div class="color"></div>
     <div class="color"></div>
@@ -12,13 +12,13 @@
         <div class="square" style="--i:3;"></div>
         <div class="square" style="--i:4;"></div>
 
-        <div class="container">
-            <div class="form">
+        <div class="container" >
+            <div class="form" >
 
                 
                 <h2>Login</h2>
 
-                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <form  [formGroup]="loginForm" (ngSubmit)="login()">
 
                     <span class="invalid-campo" *ngIf="validarCampos('correo')">Ingrese el Correo</span>
 

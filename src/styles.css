@@ -466,7 +466,7 @@ ul{
     position: absolute;
     width: 350px;
     height: 350px;
-    background-image: linear-gradient(to right, #868f96 0%, #596164 100%);
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
     border-radius: 50%;
     transform: translate(400px, 115px);
 }
@@ -644,6 +644,49 @@ ul{
     font-size: 18px;
     border-radius: 2px;
 }
+
+.errors{
+
+    width: 70%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 150px;
+    margin-top: -60px;
+  
+    border-radius: 10px;
+
+}
+
+.div-errors{
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+ .errors{
+
+    font-size: 18px;
+    color: red;
+    font-weight: 600;
+    letter-spacing: 1px;
+    position: absolute;
+    top: -20px;
+    margin-left: -60px;
+    overflow: hidden;
+}
+
+.content-errors{
+
+    margin-left: 50px;
+    width: fit-content;
+    overflow: hidden;
+}
+
 
 
 

@@ -10,8 +10,9 @@
         <li class="collection"><a routerLink="/series">Series</a></li>
         <li *ngIf="!userAuth" class="explore"><a routerLink="/login">Iniciar Sesión</a></li>
         <li *ngIf="userAuth" (click)="logout()" class="explore"><a >Cerrar Sesión</a></li>
-        <li  class="search"><a routerLink="/registro">Registrarse</a></li>
-        <li  *ngIf="role" class="search"><a routerLink="/add-peliculas">Agregar Pelicula</a></li>
+        <li   class="search"><a routerLink="/registro">Registrarse</a></li>
+        <li    class="search"><a routerLink="/add-peliculas">Agregar Pelicula</a></li>
+        <li   class="search"><a routerLink="/add-series">Agregar Serie</a></li>
     </ul>
 </nav>
    
