@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Observable } from 'rxjs';
 import { PeliculaForm } from '../models/pelicuaForm';
 import { Peliculas } from '../models/peliculas';
@@ -9,7 +10,10 @@ import { Peliculas } from '../models/peliculas';
 })
 export class AddPeliculasService {
 
-  constructor(private firestore:AngularFirestore) { }
+  constructor(
+    private firestore:AngularFirestore,
+    private storage:AngularFireStorage
+    ) { }
 
 
   guardarPelicula = (peliculaForm:PeliculaForm) => {
@@ -30,4 +34,10 @@ export class AddPeliculasService {
 
     return this.firestore.collection('peliculas').valueChanges();
   }
+
+
+  // obtenerimg = () => {
+
+  //   this.storage.ref('imagenes/')
+  // }
 }

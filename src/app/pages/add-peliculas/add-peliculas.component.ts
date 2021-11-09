@@ -8,9 +8,10 @@ import Swal from 'sweetalert2'
 
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import *  as ui from '../../shared/ui.actions';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { finalize } from 'rxjs/operators';
 
 
 @Component({
@@ -29,9 +30,14 @@ export class AddPeliculasComponent implements OnInit, OnDestroy {
 
   cargando:boolean = false;
 
-  subscription:Subscription;
-
+  
   faSpinner = faSpinner;
+  
+  
+  url:string;
+
+  
+  subscription:Subscription;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -59,6 +65,43 @@ export class AddPeliculasComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+
+  uploadImg = async(event:any) => {
+
+    console.log('evento', event);
+    const file  = event.target.files[0];
+    
+    const filePath = 'imagenes/';
+    const ref = this.storage.ref(filePath + file.name);
+    const task = ref.put(file)
+
+
+
+    console.log('task', task);
+    
+
+      ref.getDownloadURL().subscribe( async(resp) => {
+
+       this.url = await resp;
+      
+      console.log('url', this.url);
+      
+    })
+
+    setTimeout(() => {
+      
+      console.log('url', this.url);
+
+    }, 3000)
+
+    
+    
+    
+    
+    
+
+  }
+
   createForm = () => {
 
       this.peliculasForm = this.formBuilder.group({
@@ -67,7 +110,7 @@ export class AddPeliculasComponent implements OnInit, OnDestroy {
         precioAlquiler: ["", Validators.required],
         precioVenta:    ["", Validators.required],
         descripcion:    ["", Validators.required],
-        img:            this.image
+        img:            this.url
       })
   }
 
@@ -111,19 +154,7 @@ export class AddPeliculasComponent implements OnInit, OnDestroy {
   }
 
 
-  uploadImg = (event:any) => {
 
-    console.log('evento', event);
-    const file  = event.target.files[0];
-    // const urlTemporal=URL.createObjectURL(file.name)
-    
-    const filePath = 'imagenes/';
-    const ref = this.storage.ref(filePath + file.name);
-    const task = ref.put(file);
-    this.image = ref.getDownloadURL();
-    console.log('url', this.image);
-
-  }
 
   validarCampos = (campo:string) => {
 

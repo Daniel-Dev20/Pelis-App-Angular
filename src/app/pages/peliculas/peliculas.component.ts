@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducer';
 import { AddPeliculasService } from 'src/app/services/add-peliculas.service';
 import * as pelis from '../peliculas.actions';
@@ -14,34 +15,32 @@ import { setPelicula } from '../peliculas.actions';
 })
 export class PeliculasComponent implements OnInit, OnDestroy {
 
-<<<<<<< HEAD
+  peliculas:any[] = [];
 
   subscription:Subscription;
 
+
+  img:Observable<string>;
+
   constructor(
     private peliculaService:AddPeliculasService,
-    private store:Store<AppState>
+    private storage:AngularFireStorage
     ) { }
-=======
-  peliculas:any[] = [];
-
-  constructor(private peliculaService:AddPeliculasService) { }
->>>>>>> 21d779729dfde328ee4138e4cfc1d66e0d40c376
 
   ngOnInit(): void {
 
      this.subscription =  this.peliculaService.obtenerPeliculas().subscribe( (pelis:any)=> {
 
-<<<<<<< HEAD
-      this.store.dispatch(setPelicula({peliculas: pelis}))
-
-      console.log(pelis);
-=======
-      this.peliculas = resp;
->>>>>>> 21d779729dfde328ee4138e4cfc1d66e0d40c376
+      this.peliculas = pelis;
       
 
     });
+
+  //  const ref = this.storage.ref('imagenes/gs://movie-app-8fe0f.appspot.com');
+
+  //  this.img = ref.getDownloadURL();
+
+    
   }
 
   ngOnDestroy(){

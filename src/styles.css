@@ -33,7 +33,7 @@ ul{
 .right{
 
     width: 100%;
-    height: 100vh;
+    height: 95vh;
     background-image: linear-gradient(to right, #4343433a 0%, rgba(0, 0, 0, 0.829) 100%), url('./assets/img/banner.png');
     right: 0%;
     background-position: center;
@@ -41,6 +41,7 @@ ul{
     background-size:cover;
     object-fit: cover;
     image-rendering: crisp-edges;
+    position: absolute;
 }
 
 .nav{
@@ -127,7 +128,8 @@ ul{
 .img-wrapper .banner{
 
     width: 1024px;
-    height: 675px;
+    height: 350px;
+    margin-bottom: 45px;
 
 
 }
@@ -709,10 +711,11 @@ ul{
     position: relative;
     display: flex;
     height: calc(100% - 200px);
-    width: calc(100% - 200px);
+    width: 100%;
     z-index: 100;
     justify-content:center;
     align-items: center;
+    
 }
 
 .container-img .box-img{
@@ -722,6 +725,8 @@ ul{
     height: 100%;
     overflow: hidden;
     border-right: 10px solid #000;
+    margin: 10px;
+   
 }
 
 .container-img .box-img:last-child{
@@ -773,20 +778,24 @@ ul{
 .contenido-peli{
 
     display: flex;
-    flex-direction:row;
+    /* flex-direction:row; */
     width: 100%;
     height: 100vh;
+    flex-wrap: wrap;
+
    
 }
 
 .flex-peli{
 
     width: 600px;
-    height: 600px;
+    height: 300px;
     background: #000;
     margin: 10px;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: rgb(255, 255, 255, 0.05);
+    border: 1px solid #fff;
 }
 .flex-peli img{
 
@@ -795,7 +804,31 @@ ul{
     display: block;
     margin: 0px auto;
     object-fit:cover;
+    top: 50%;
    
+}
+
+.flex-peli span{
+
+    width: 125px;
+    font-size: 13px;
+    
+}
+
+.flex-span{
+
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+}
+
+.flex-span div{
+
+    margin: 10px;
+    overflow: hidden;
+
 }
 
 @media (max-width: 1548px){

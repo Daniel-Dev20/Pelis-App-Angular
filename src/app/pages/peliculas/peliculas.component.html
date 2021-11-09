@@ -3,18 +3,18 @@
 
 <app-navbar></app-navbar>
 
-<<<<<<< HEAD
-
-
-=======
 <div class="contenido-peli" >
-    <div class="flex-peli" *ngFor=" let pelicula of peliculas">
-        <img src="../../../assets/img/dark.png" alt="">
-        <p><span class="badge bg-primary">Titulo</span> {{pelicula.titulo}}</p>
-        <p><span class="badge bg-success">Stock:</span> {{pelicula.stock}}</p>
-        <p><span class="badge bg-warning text-dark">Precio Alquiler:</span>{{pelicula.precioAlquiler}}</p>
-        <p><span class="badge bg-warning text-dark">Precio Venta</span>{{pelicula.precioVenta}}</p>
-        <p><span class="badge bg-primary">Descripción</span>{{pelicula.descripcion}}</p>
+    <div class="flex-peli" *ngFor=" let pelicula of peliculas" >
+
+        <img [src]="img" alt="">
+        <div class="flex-span">
+
+        <div><span  class="badge bg-danger">Titulo: {{pelicula.titulo}}</span> </div>
+        <div><span  class="badge bg-danger">Stock: {{pelicula.stock}}</span></div>
+        <div><span  class="badge bg-danger">Precio Alquiler: {{pelicula.precioAlquiler}}</span></div>
+        <div><span  class="badge bg-danger">Precio Venta: {{pelicula.precioVenta}}</span></div>
+        </div>
+        
+
     </div>
 </div>
->>>>>>> 21d779729dfde328ee4138e4cfc1d66e0d40c376
