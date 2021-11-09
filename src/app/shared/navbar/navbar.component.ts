@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     @Inject(DOCUMENT) private document:Document,
     private authService:AuthService,
-    private router:Router
+    private router:Router,
     ) {
 
      
@@ -40,6 +40,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     
     // this.initialAnimation();
     AOS.init();
+
+   
   }
   ngOnDestroy(){
 

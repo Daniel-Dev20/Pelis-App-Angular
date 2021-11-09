@@ -7,5 +7,5 @@ export interface seriesForm{
     temporada:string,
     precioVenta:number,
     descripcion:string,
-    img:string
+    img:any
 }

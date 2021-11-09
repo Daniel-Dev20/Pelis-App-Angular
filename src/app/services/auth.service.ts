@@ -37,7 +37,7 @@ export class AuthService {
 
     getUser = () => {
 
-      return  console.log( 'mm', this.auth.currentUser);
+      return  this.auth.currentUser;
     }
 
     initAuthListener = () => {
@@ -59,6 +59,7 @@ export class AuthService {
                 this.store.dispatch(authActions.setUser({user}))
 
                 const {role} = fireuser;
+                
                 console.log('roleee', role);
 
                 this._userRole = role;

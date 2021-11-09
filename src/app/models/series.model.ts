@@ -10,8 +10,8 @@ export class Series{
         public stock:number,
         public temporada:string,
         public precioVenta:number,
-        descripcion:String,
-        img:string
+        public descripcion:String,
+        public img:any
 
         
     ){}

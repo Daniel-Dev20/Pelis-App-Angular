@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { AppState } from 'src/app/app.reducer';
 import { AddPeliculasService } from 'src/app/services/add-peliculas.service';
+import * as pelis from '../peliculas.actions';
+import { setPelicula } from '../peliculas.actions';
 
 @Component({
   selector: 'app-peliculas',
@@ -7,17 +12,31 @@ import { AddPeliculasService } from 'src/app/services/add-peliculas.service';
   styles: [
   ]
 })
-export class PeliculasComponent implements OnInit {
+export class PeliculasComponent implements OnInit, OnDestroy {
 
-  constructor(private peliculaService:AddPeliculasService) { }
+
+  subscription:Subscription;
+
+  constructor(
+    private peliculaService:AddPeliculasService,
+    private store:Store<AppState>
+    ) { }
 
   ngOnInit(): void {
 
-    this.peliculaService.obtenerPeliculas().subscribe(resp => {
+     this.subscription =  this.peliculaService.obtenerPeliculas().subscribe( (pelis:any)=> {
 
-      console.log(resp);
+      this.store.dispatch(setPelicula({peliculas: pelis}))
+
+      console.log(pelis);
       
-    })
+
+    });
+  }
+
+  ngOnDestroy(){
+
+    this.subscription.unsubscribe();
   }
 
 }

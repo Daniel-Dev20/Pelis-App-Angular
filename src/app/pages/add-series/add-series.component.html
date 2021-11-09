@@ -95,7 +95,7 @@
         <div class="row100">
             <div class="col">
                 <div class=" textarea">
-                    <input type="file" />
+                    <input type="file" (change)="uploadImg($event)"  formControlName="img"/>
                     
                     <span class="line"></span>
                 </div>
@@ -105,8 +105,11 @@
  
         <div class="row100">
             <div class="col">
-                <input  type="submit" value="Guardar"/>
-                <!-- <fa-icon *ngIf="cargando"[icon]="faSpinner"></fa-icon> -->
+                <input *ngIf="!cargando" type="submit" value="Guardar"/>
+
+                <fa-icon *ngIf="cargando"[icon]="faSpinner"></fa-icon>
+
+                <input  *ngIf="cargando" type="submit" value="Espere..."/>
                
             </div>
 

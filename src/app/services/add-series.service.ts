@@ -16,9 +16,14 @@ export class AddSeriesService {
 
     const id = new Date().getTime();
 
-    const newSerie = new Series(id,titulo, stock, temporada, precioVenta, descripcion, img)
+    const newSerie = new Series(id,titulo, stock, temporada, precioVenta, descripcion, img);
 
-    this.firestore.doc(`series/${id}`).set({...newSerie})
+    return this.firestore.doc(`series/${id}`).set({...newSerie});
 
+  }
+
+  obtenerSeries = () => {
+
+    return this.firestore.collection('series').valueChanges();
   }
 }

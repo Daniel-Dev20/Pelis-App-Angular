@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 import { PeliculaForm } from '../models/pelicuaForm';
 import { Peliculas } from '../models/peliculas';
 
@@ -25,7 +26,7 @@ export class AddPeliculasService {
   }
 
 
-  obtenerPeliculas = () => {
+  obtenerPeliculas:any = () => {
 
     return this.firestore.collection('peliculas').valueChanges();
   }
