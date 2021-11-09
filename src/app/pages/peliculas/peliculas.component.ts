@@ -9,13 +9,15 @@ import { AddPeliculasService } from 'src/app/services/add-peliculas.service';
 })
 export class PeliculasComponent implements OnInit {
 
+  peliculas:any[] = [];
+
   constructor(private peliculaService:AddPeliculasService) { }
 
   ngOnInit(): void {
 
     this.peliculaService.obtenerPeliculas().subscribe(resp => {
 
-      console.log(resp);
+      this.peliculas = resp;
       
     })
   }
