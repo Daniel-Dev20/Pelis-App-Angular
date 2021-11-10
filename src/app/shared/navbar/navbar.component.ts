@@ -6,6 +6,11 @@ import { AuthService } from 'src/app/services/auth.service';
 import  * as AOS from 'aos';
 import 'aos/dist/aos.css'; 
 import { DOCUMENT } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
+import { uiReducer } from '../ui.reducer';
+import { isLoading } from '../ui.actions';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -19,23 +24,44 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   userAuth = localStorage.getItem('email');
 
-  role:string;
+  role:any;
+
+  usuario:any;
+
+  subscription:Subscription;
+
+  role2:string;
 
   constructor(
 
     @Inject(DOCUMENT) private document:Document,
+
     private authService:AuthService,
+
     private router:Router,
+
+    private store:Store<AppState>
+
     ) {
 
-     
 
+      this.subscription = this.store.select('user').subscribe(user =>  {
+        
+        
+        this.usuario = {...user.user} 
+
+        console.log('tt', this.usuario);
+        
+      
+      
+      })
+     
+          
      }
 
    ngOnInit() {
 
    
-    this.getUserRole();
 
     
     // this.initialAnimation();
@@ -47,20 +73,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     // this.authService.initAuthListener();
 
+    this.subscription.unsubscribe();
+
   }
 
-//     initialAnimation = () => {
 
-//     gsap.from(this.navbar.nativeElement.childNodes, {
-//       duration:1,
-//       opacity: 0,
-//       y:-20,
-//       stagger:0.2,
-//       delay:0.5
-//     })
-
-   
-//  }
 
   logout = () => {
 
@@ -73,13 +90,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     })
  }
 
- getUserRole = async () => {
-
-  this.role =  await this.authService.getuserRole;
-
-  console.log('vvv',this.role);
 
 
-}
+
 
 }

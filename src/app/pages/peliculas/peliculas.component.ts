@@ -1,10 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { AppState } from 'src/app/app.reducer';
 import { AddPeliculasService } from 'src/app/services/add-peliculas.service';
-import * as pelis from '../peliculas.actions';
+
+
+//FONTAWESOME
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
 import { setPelicula } from '../peliculas.actions';
 
 @Component({
@@ -15,32 +18,47 @@ import { setPelicula } from '../peliculas.actions';
 })
 export class PeliculasComponent implements OnInit, OnDestroy {
 
-  peliculas:any[] = [];
+  public peliculas:any[] = [];
 
-  subscription:Subscription;
+  public subscription:Subscription;
 
 
-  img:Observable<string>;
+  public img:Observable<string>;
+
+
+  public faspinner = faSpinner;
+
+  public cargando:boolean = false;
 
   constructor(
+
     private peliculaService:AddPeliculasService,
-    private storage:AngularFireStorage
+
+    private storage:AngularFireStorage,
+
+    private store:Store<AppState>
+
     ) { }
 
   ngOnInit(): void {
 
+    this.cargando = true;
+
      this.subscription =  this.peliculaService.obtenerPeliculas().subscribe( (pelis:any)=> {
 
-      this.peliculas = pelis;
+
+      console.log('peliculas', pelis);
       
+      this.peliculas = pelis;
+
+      this.cargando = false;
+      
+      this.store.dispatch(setPelicula({peliculas:pelis}))
 
     });
 
-  //  const ref = this.storage.ref('imagenes/gs://movie-app-8fe0f.appspot.com');
-
-  //  this.img = ref.getDownloadURL();
-
-    
+ 
+  
   }
 
   ngOnDestroy(){

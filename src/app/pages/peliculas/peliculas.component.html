@@ -4,17 +4,18 @@
 <app-navbar></app-navbar>
 
 <div class="contenido-peli" >
-    <div class="flex-peli" *ngFor=" let pelicula of peliculas" >
 
-        <img [src]="img" alt="">
+    <fa-icon *ngIf="cargando" [icon]="faspinner" size="10x" [spin]="true" class="icon-spinner"></fa-icon>
+    <div data-aos="zoom-out-up"  aos-duration="2000" class="flex-peli" *ngFor=" let pelicula of peliculas" >
+
+        <img [src]="pelicula.img" alt="">
         <div class="flex-span">
 
-        <div><span  class="badge bg-danger">Titulo: {{pelicula.titulo}}</span> </div>
+        <div ><span  class="badge bg-danger">Titulo: {{pelicula.titulo}}</span> </div>
         <div><span  class="badge bg-danger">Stock: {{pelicula.stock}}</span></div>
-        <div><span  class="badge bg-danger">Precio Alquiler: {{pelicula.precioAlquiler}}</span></div>
-        <div><span  class="badge bg-danger">Precio Venta: {{pelicula.precioVenta}}</span></div>
+        <div><span  class="badge bg-danger">Precio Alquiler:{{pelicula.precioAlquiler | currency}}</span></div>
+        <div><span  class="badge bg-danger">Precio Venta:{{pelicula.precioVenta | currency}}</span></div>
         </div>
         
-
     </div>
 </div>

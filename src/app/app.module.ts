@@ -23,6 +23,7 @@ import { SharedModule } from './shared/shared.module';
 import {StoreModule} from '@ngrx/store';
 import { appReducers } from './app.reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -51,6 +52,8 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools'
       logOnly: environment.production,
 
     }),
+
+    FontAwesomeModule
     
    
   ],

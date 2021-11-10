@@ -23,21 +23,25 @@ import Swal from 'sweetalert2'
 })
 export class RegisterComponent implements OnInit, OnDestroy {
 
-  registroForm:FormGroup;
+  public registroForm:FormGroup;
 
-  formSubmitted:false;
+  public formSubmitted:false;
 
-  cargando:boolean = false;
+  public cargando:boolean = false;
 
-  uiSubscription:Subscription;
+  public uiSubscription:Subscription;
 
-  faSpinner = faSpinner;
+  public faSpinner = faSpinner;
 
   constructor(
     private formBuilder:FormBuilder,
+
     private authService:AuthService,
+
     private store:Store<AppState>,
+
     private router: Router
+
     ) {
 
 
@@ -48,8 +52,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.registroForm = this.formBuilder.group({
 
       nombre: ["", [Validators.required, Validators.minLength(3)]],
+
       correo: ["", [Validators.required, Validators.email]],
+
       password: ["", [Validators.required, Validators.minLength(6)]],
+
       role: ["", Validators.required]
 
     });
@@ -74,13 +81,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     if(this.registroForm.invalid){return;}
 
-    //   Swal.fire({
-
-    //   title: 'Espere Por favor',
-    //   html: 'I will close in <b></b> milliseconds.',
-    //   timer: 2000,
-    //   timerProgressBar: true,
-    // })
 
     this.store.dispatch(ui.isLoading());
 
@@ -88,8 +88,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
       console.log(credenciales);
 
-
-      // Swal.close();
       this.store.dispatch(ui.stopLoading());
 
       this.router.navigateByUrl('/home')

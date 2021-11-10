@@ -25,22 +25,27 @@ import Swal from 'sweetalert2'
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  loginForm:FormGroup;
+  public loginForm:FormGroup;
 
-  cargando:boolean = false;
+  public cargando:boolean = false;
 
-  uiSubscription:Subscription;
+  public uiSubscription:Subscription;
 
-  faSpinner = faSpinner;
+  public faSpinner = faSpinner;
 
-  faCheck = faCheckCircle;
+  public faCheck = faCheckCircle;
 
 
   constructor(
+
     private formBuilder:FormBuilder,
+
     private authService:AuthService,
+
     private store:Store<AppState>,
+
     private router:Router
+
     ) { 
 
    
@@ -52,7 +57,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginForm = this.formBuilder.group({
 
       correo: ["test1@gmail.com", [Validators.required, Validators.email]],
+
       password: ["123456", [Validators.required, Validators.minLength(6)]]
+
     });
 
 
@@ -78,19 +85,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     console.log(this.loginForm.value);
 
-    // Swal.fire({
-    //   title: 'Auto close alert!',
-    //   html: 'I will close in <b></b> milliseconds.',
-    //   timer: 2000,
-    //   timerProgressBar: true,
-      
-    // })
-
     this.authService.login(this.loginForm.value).then(credenciales => {
        
       console.log(credenciales);
 
-      // Swal.close();
 
       this.store.dispatch(ui.stopLoading());
 

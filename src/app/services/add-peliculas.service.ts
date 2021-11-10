@@ -25,14 +25,14 @@ export class AddPeliculasService {
     const newPelicula = new Peliculas( id,titulo, stock, precioAlquiler, precioVenta, descripcion, img);
 
 
-    return  this.firestore.doc(`peliculas/${id}`).set({...newPelicula});
+    return   this.firestore.doc(`peliculas/${id}`).set({...newPelicula});
 
   }
 
 
   obtenerPeliculas:any = () => {
 
-    return this.firestore.collection('peliculas').valueChanges();
+    return  this.firestore.collection('peliculas').valueChanges();
   }
 
 

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AddSeriesService } from 'src/app/services/add-series.service';
@@ -12,24 +13,42 @@ import { setSeries } from '../series.actions';
 })
 export class SeriesComponent implements OnInit, OnDestroy {
 
-  subscription:Subscription;
+   subscription:Subscription;
+
+   series:any [] = [];
+
+   cargando:boolean = false;
+
+   public faspinner = faSpinner;
+  
 
   constructor(
 
     private serieService:AddSeriesService,
+
     private store:Store
+
     ) { 
+
+      this.cargando = true;
 
      this.subscription =  this.serieService.obtenerSeries().subscribe( (serie:any) => {
 
-      console.log(serie);
+       
+       this.series = serie;
+       
+       console.log(this.series);
 
       this.store.dispatch(setSeries({series:serie}))
+
+      this.cargando = false;
       
     })
   }
 
   ngOnInit(): void {
+
+  
   }
 
   ngOnDestroy(){

@@ -11,7 +11,8 @@ import * as ui from 'src/app/shared/ui.actions';
 import { AddSeriesService } from '../../services/add-series.service';
 
 
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 
@@ -23,30 +24,35 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 })
 export class AddSeriesComponent implements OnInit, OnDestroy {
 
-  seriesForm:FormGroup;
+  public seriesForm:FormGroup;
 
-  cargando:boolean = false;
+  public cargando:boolean = false;
 
+  public subscription:Subscription;
 
-  subscription:Subscription;
+  public faSpinner = faSpinner;
 
-  faSpinner = faSpinner;
+  public image:any;
 
-
-  image:any;
+  public url:string;
 
   constructor(
+    
     private formBuilder:FormBuilder,
+
     private serieService:AddSeriesService,
+
     private store:Store<AppState>,
+
     private storage:AngularFireStorage
+
     ) { }
 
   ngOnInit(): void {
 
     this.createForm();
 
-   this.subscription =  this.store.select('ui').subscribe( ui => this.cargando = ui.isLoading);
+    this.subscription =  this.store.select('ui').subscribe( ui => this.cargando = ui.isLoading);
 
   }
 
@@ -57,6 +63,38 @@ export class AddSeriesComponent implements OnInit, OnDestroy {
   }
 
 
+  uploadImg = async(event:any) => {
+
+    const file =  event.target.files[0];
+
+    this.image = event.target.files[0].name;
+
+    const filePath = "imagenes/";
+
+    const ref = this.storage.ref(filePath + file.name);
+    
+    const urlRef = await ref.getDownloadURL().toPromise().then(resp => {
+
+        this.url = resp;
+
+        this.seriesForm.setValue({img:this.url})
+
+    }).catch(err => {
+
+      Swal.fire({
+        icon: 'error',
+        title: err,
+      });
+
+    })
+
+    const task = ref.put(file);
+
+    console.log('img', this.url);
+    
+
+  }
+
 
 
   createForm = () => {
@@ -64,11 +102,16 @@ export class AddSeriesComponent implements OnInit, OnDestroy {
     this.seriesForm = this.formBuilder.group({
 
       titulo:      ["", Validators.required],
+
       stock:       ["", Validators.required],
+      
       temporada:   ["", Validators.required],
+
       precioVenta: ["", Validators.required],
+
       descripcion: ["", Validators.required],
-      img:         this.image
+
+      img:         ["", Validators.required]
 
     });
 
@@ -82,15 +125,17 @@ export class AddSeriesComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(ui.isLoading());
 
-    await this.serieService.guardarSeries(this.seriesForm.value).then(resp => {
+    await this.serieService.guardarSeries({...this.seriesForm.value, img:this.url}).then(resp => {
 
         console.log(resp);
 
         this.store.dispatch(ui.stopLoading());
 
         Swal.fire({
+          
           icon: 'success',
           title: 'Serie guardada',
+
         })
 
 
@@ -105,6 +150,7 @@ export class AddSeriesComponent implements OnInit, OnDestroy {
           icon: 'error',
           title: 'Oops...',
           text: err,
+
         })
     })
     
@@ -115,23 +161,7 @@ export class AddSeriesComponent implements OnInit, OnDestroy {
 
 
 
-  uploadImg = (event:any) => {
-
-    const file =  event.target.files[0];
-
-    this.image = event.target.files[0].name;
-
-    const filePath = "imagenes/";
-
-    const ref = this.storage.ref(filePath + file.name);
-    
-
-    const task = ref.put(file);
-
-    console.log('img', this.image);
-    
-
-  }
+ 
 
   validarCampos = (campo:string) => {
 

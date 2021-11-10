@@ -1,117 +1,113 @@
-
-
-
 <app-navbar></app-navbar>
 
-<section data-aos="fade-right" class="section-add-movie " >
-    
+<section data-aos="fade-right" class="section-add-movie ">
+
     <div class="container-add-movie">
         <h2>Agregar Pelicula</h2>
         <form [formGroup]="peliculasForm" (ngSubmit)="guardar()">
-        <div class="row100">
-            <div class="col">
-                <span class="errors" *ngIf="validarCampos('titulo')">* El titulo es obligatorio *</span>
+            <div class="row100">
+                <div class="col">
+                    <span class="errors" *ngIf="validarCampos('titulo')">* El titulo es obligatorio *</span>
 
                     <div class="inputBoxMovie">
 
 
-                        <input 
-                        type="text"
-                        formControlName="titulo"
-                        >
+                        <input type="text" formControlName="titulo">
                         <span class="text">Titulo</span>
                         <span class="line"></span>
 
                     </div>
-            </div>
-
-            <div class="col">
-                <span class="errors" *ngIf="validarCampos('stock')">* El stock es  obligatorio *</span>
-
-                <div class="inputBoxMovie">
-
-                    <input type="number"  formControlName="stock">
-                    <span class="text">Stock</span>
-                    <span class="line"></span>
-
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row100">
-
-
-
-            <div class="col">
-                <div class="content-errors">
-                <span class="errors" *ngIf="validarCampos('precioAlquiler')">* El Precio Alquiler es obligatorio *</span>
-
                 </div>
 
-                <div class="inputBoxMovie">
+                <div class="col">
+                    <span class="errors" *ngIf="validarCampos('stock')">* El stock es obligatorio *</span>
 
-                    <input type="number" formControlName="precioAlquiler">
-                    <span class="text">Precio Alquiler</span>
-                    <span class="line"></span>
+                    <div class="inputBoxMovie">
 
-                </div>
-            </div>
+                        <input type="number" formControlName="stock">
+                        <span class="text">Stock</span>
+                        <span class="line"></span>
 
-            <div class="col">
-                <div class="content-errors">
-                    <span class="errors" *ngIf="validarCampos('precioVenta')">* El Precio Venta es obligatorio *</span>
-    
                     </div>
-                <div class="inputBoxMovie">
-
-                    <input type="number" formControlName="precioVenta">
-                    <span class="text">Precio Venta</span>
-                    <span class="line"></span>
-
                 </div>
+
             </div>
 
-        </div>
+            <div class="row100">
 
-        <div class="row100">
-            <div class="col">
-                <div class="content-errors">
-                    <span class="errors" *ngIf="validarCampos('descripcion')">* La descripción es obligatoria *</span>
-    
+
+
+                <div class="col">
+                    <div class="content-errors">
+                        <span class="errors" *ngIf="validarCampos('precioAlquiler')">* El Precio Alquiler es obligatorio
+                            *</span>
+
                     </div>
-                <div class="inputBoxMovie textarea">
-                    <textarea formControlName="descripcion"></textarea>
-                    <span class="text">Descripción</span>
-                    <span class="line"></span>
+
+                    <div class="inputBoxMovie">
+
+                        <input type="number" formControlName="precioAlquiler">
+                        <span class="text">Precio Alquiler</span>
+                        <span class="line"></span>
+
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="content-errors">
+                        <span class="errors" *ngIf="validarCampos('precioVenta')">* El Precio Venta es obligatorio
+                            *</span>
+
+                    </div>
+                    <div class="inputBoxMovie">
+
+                        <input type="number" formControlName="precioVenta">
+                        <span class="text">Precio Venta</span>
+                        <span class="line"></span>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row100">
+                <div class="col">
+                    <div class="content-errors">
+                        <span class="errors" *ngIf="validarCampos('descripcion')">* La descripción es obligatoria
+                            *</span>
+
+                    </div>
+                    <div class="inputBoxMovie textarea">
+                        <textarea formControlName="descripcion"></textarea>
+                        <span class="text">Descripción</span>
+                        <span class="line"></span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row100">
-            <div class="col">
-                <div class=" textarea">
-                    <input (change)="uploadImg($event)" type="file" formControlName="img"/>
-                    
-                    <span class="line"></span>
+            <div class="row100">
+                <div class="col">
+                    <div class=" textarea">
+                        <input (change)="uploadImg($event)" type="file" value="url" formcControlName="img" />
+
+                        <span class="line"></span>
+                    </div>
+
                 </div>
-   
-            </div>
-        </div>
- 
-        <div class="row100">
-            <div class="col">
-                <input *ngIf="!cargando"  type="submit" value="Guardar"/>
-                <fa-icon *ngIf="cargando"[icon]="faSpinner"></fa-icon>
-                <input *ngIf="cargando" type="submit" value="Guardando...">
             </div>
 
-        </div>
+            <div class="row100">
+                <div class="col">
+                    <input *ngIf="!cargando" type="submit" value="Guardar" />
+                    <fa-icon *ngIf="cargando" [icon]="faSpinner"></fa-icon>
+                    <input *ngIf="cargando" type="submit" value="Guardando...">
+                </div>
+
+            </div>
 
 
-      
-    </form>
+
+        </form>
 
     </div>
 </section>
-

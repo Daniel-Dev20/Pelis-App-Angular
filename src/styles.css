@@ -810,7 +810,7 @@ ul{
 
 .flex-peli span{
 
-    width: 125px;
+    width: 135px;
     font-size: 13px;
     
 }
@@ -831,6 +831,14 @@ ul{
 
 }
 
+
+.icon-spinner{
+
+    text-align: center;
+    display: block;
+    margin: 0px auto;
+    margin-top: 20px;
+}
 @media (max-width: 1548px){
 
     .mac {

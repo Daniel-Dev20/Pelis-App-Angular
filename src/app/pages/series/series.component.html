@@ -1,4 +1,20 @@
 
 <app-navbar></app-navbar>
 
-<p>series works!</p>
+
+<div class="contenido-peli" >
+
+    <fa-icon *ngIf="cargando" [icon]="faspinner" size="10x" [spin]="true" class="icon-spinner"></fa-icon>
+    <div data-aos="zoom-out-up"  aos-duration="2000" class="flex-peli" *ngFor=" let serie of series" >
+
+        <img [src]="serie.img" alt="">
+        <div class="flex-span">
+
+        <div ><span  class="badge bg-danger">Titulo: {{serie.titulo}}</span> </div>
+        <div><span  class="badge bg-danger">Stock: {{serie.stock}}</span></div>
+        <div><span  class="badge bg-danger">Temporada:{{serie.temporada}}</span></div>
+        <div><span  class="badge bg-danger">Precio Venta:${{serie.precioVenta}}</span></div>
+        </div>
+        
+    </div>
+</div>

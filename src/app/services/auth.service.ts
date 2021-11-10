@@ -5,10 +5,15 @@ import { loginForm } from '../models/loginForm';
 import { registroForm } from '../models/registro-form';
 import { Usuario } from '../models/usuario.model';
 import {map} from 'rxjs/operators'
+
+
+//NGRX
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducer';
 import * as authActions from '../auth/auth.actions';
 import { Subscription } from 'rxjs';
+import { unsetPeliculas } from '../pages/peliculas.actions';
+import { unsetSeries } from '../pages/series.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +21,7 @@ import { Subscription } from 'rxjs';
 export class AuthService {
 
 
-  userSubscription:Subscription;
+  public userSubscription:Subscription;
 
   public _userRole:any;
 
@@ -28,51 +33,40 @@ export class AuthService {
   constructor(
 
     private firestore:AngularFirestore,
+
     private auth: AngularFireAuth,
+
     private store:Store<AppState>
+
     ) {
 
      }
 
 
-    getUser = () => {
 
-      return  this.auth.currentUser;
-    }
-
-    initAuthListener = () => {
+    initAuthListener = async() => {
 
        return  this.auth.authState.subscribe( fuser => {
 
-        console.log(fuser);
 
         if(fuser){
 
           //existe
-           return  this.userSubscription =   this.firestore.doc(`usuarios/${fuser.uid}`).valueChanges()
+           return  this.userSubscription =  this.firestore.doc(`usuarios/${fuser.uid}`).valueChanges()
               .subscribe((fireuser:any) => {
 
-                console.log(fireuser);
 
                 const user =  Usuario.fromFirebase(fireuser)
 
                 this.store.dispatch(authActions.setUser({user}))
 
-                const {role} = fireuser;
-                
-                console.log('roleee', role);
-
-                this._userRole = role;
-
                 return fireuser;
+
               })
         }else{
-
           //no exist
-
           this.userSubscription.unsubscribe(); 
           this.store.dispatch(authActions.unsetUser());
-
         }
 
         
@@ -81,7 +75,7 @@ export class AuthService {
 
     crearUsuario = (usuario:registroForm) => {
 
-      const {nombre,correo, password } = usuario;
+      const {nombre,correo, password, role } = usuario;
 
       console.log(nombre, correo, password);
       
@@ -89,7 +83,7 @@ export class AuthService {
       return this.auth.createUserWithEmailAndPassword( correo, password).then( ({user}) => {
 
 
-        const newUser = new Usuario(user?.uid, nombre, correo);
+        const newUser = new Usuario(user?.uid, nombre, correo, role);
 
         localStorage.setItem('email', correo)
 
@@ -104,6 +98,7 @@ export class AuthService {
       const {correo, password} = usuario;
 
       localStorage.setItem('email', correo)
+      
      return  this.auth.signInWithEmailAndPassword(correo, password);
 
     }
@@ -112,7 +107,15 @@ export class AuthService {
 
       localStorage.removeItem('email');
 
+      this.store.dispatch(unsetPeliculas());
+
+      this.store.dispatch(unsetSeries());
+
+      // this.store.dispatch(authActions.unsetUser());
+
       return this.auth.signOut();
+
+
     }
 
    
