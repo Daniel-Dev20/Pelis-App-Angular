@@ -47,26 +47,30 @@ ul{
 .nav{
 
     background: rgba(0, 0, 0, 0.767);
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+   
 }
 .nav ul{
 
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    height: 70px;
-    padding: 0 20px;
+    height:55px;
+   
 }
 
 .nav ul li{
 
-    display: inline-block;
-    
+    display: flex;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 14px;
+    letter-spacing: 1px;
+    font-size: 16px;
     font-weight: 600;
     padding: 0 30px;
     justify-content: center;
+    align-items: center;
 }
 
 .nav a{
@@ -75,32 +79,7 @@ ul{
     color: #fff;
     cursor: pointer;
 }
-.nav .logo{
 
-    flex: 1;
-    font-size: 18px;
-    letter-spacing: 0;
-}
-
-.nav .menu{
-
-    flex:1;
-    font-size: 18px;
-}
-
-.nav .collection{
-    flex: 1;
-}
-
-.nav .explore{
-
-    flex: 1;
-}
-
-.nav .search{
-
-    flex:1;
-}
 
 
 /*FIN DE ESTILO DEL NAVBAR*/
@@ -129,7 +108,8 @@ ul{
 
     width: 1024px;
     height: 350px;
-    margin-bottom: 45px;
+    margin-bottom: 260px;
+    position:relative;
 
 
 }
@@ -725,7 +705,6 @@ ul{
     height: 100%;
     overflow: hidden;
     border-right: 10px solid #000;
-    margin: 10px;
    
 }
 
@@ -737,7 +716,7 @@ ul{
 
 .container-img .box-img .imgBox{
 
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -759,7 +738,7 @@ ul{
 
 .container-img .box-img .imgBox img{
 
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -782,6 +761,7 @@ ul{
     width: 100%;
     height: 100vh;
     flex-wrap: wrap;
+    margin-top: 30px;
 
    
 }
@@ -789,7 +769,7 @@ ul{
 .flex-peli{
 
     width: 600px;
-    height: 300px;
+    height: 380px;
     background: #000;
     margin: 10px;
     border-radius: 10px;
@@ -800,7 +780,7 @@ ul{
 .flex-peli img{
 
     width: 600px;
-    height: 200px;
+    height: 250px;
     display: block;
     margin: 0px auto;
     object-fit:cover;
@@ -839,6 +819,18 @@ ul{
     margin: 0px auto;
     margin-top: 20px;
 }
+.icons{
+
+    display: flex;
+    justify-content: center;
+}
+.icon-edits{
+
+   margin: 10px;
+   
+}
+
+
 @media (max-width: 1548px){
 
     .mac {

@@ -5,7 +5,9 @@ import { AddPeliculasService } from 'src/app/services/add-peliculas.service';
 
 
 //FONTAWESOME
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+
+//NGRX
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { setPelicula } from '../peliculas.actions';
@@ -29,6 +31,12 @@ export class PeliculasComponent implements OnInit, OnDestroy {
   public faspinner = faSpinner;
 
   public cargando:boolean = false;
+
+  public faTrash = faTrash;
+
+  public faEdit = faEdit;
+
+ 
 
   constructor(
 

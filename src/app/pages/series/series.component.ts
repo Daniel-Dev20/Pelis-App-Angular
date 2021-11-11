@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faSpinner, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AddSeriesService } from 'src/app/services/add-series.service';
@@ -18,6 +18,10 @@ export class SeriesComponent implements OnInit, OnDestroy {
    series:any [] = [];
 
    cargando:boolean = false;
+
+   public faTrash = faTrash;
+
+   public faEdit = faEdit;
 
    public faspinner = faSpinner;
   
